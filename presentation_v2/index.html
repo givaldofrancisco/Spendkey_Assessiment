@@ -258,6 +258,83 @@
             border-color: var(--sk-blue);
         }
 
+        .nlq-chart {
+            position: relative;
+            height: 190px;
+            padding: 12px 18px 44px 28px;
+            border-left: 2px solid #334155;
+            border-bottom: 2px solid #334155;
+            display: flex;
+            align-items: flex-end;
+            gap: 18px;
+            background: repeating-linear-gradient(to top,
+                    rgba(255, 255, 255, 0.06) 0,
+                    rgba(255, 255, 255, 0.06) 1px,
+                    transparent 1px,
+                    transparent 32px);
+            border-radius: 12px;
+        }
+
+        .nlq-bar {
+            position: relative;
+            width: 46px;
+            border-radius: 8px 8px 4px 4px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 6px;
+            color: #0b1120;
+            font-weight: 700;
+        }
+
+        .nlq-bar strong {
+            position: absolute;
+            top: -26px;
+            font-size: 0.9rem;
+            color: var(--sk-white);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .nlq-bar span {
+            position: absolute;
+            bottom: -26px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 78px;
+            text-align: center;
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.04em;
+        }
+
+        .nlq-bar.red {
+            background: linear-gradient(180deg, #ff7b8c 0%, #ff4d6a 60%, #d81e3e 100%);
+        }
+
+        .nlq-bar.orange {
+            background: linear-gradient(180deg, #ffe08a 0%, #facc15 60%, #d9a50e 100%);
+        }
+
+        .nlq-cap {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 50%;
+            border-top: 2px dashed rgba(148, 163, 184, 0.8);
+        }
+
+        .nlq-cap span {
+            position: absolute;
+            right: 0;
+            top: -22px;
+            color: #cbd5f5;
+            font-size: 0.8rem;
+            background: rgba(3, 44, 70, 0.7);
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
         /* Grids */
         .grid-2 {
             display: grid;
@@ -479,16 +556,19 @@
     <nav>
         <a href="#hero" class="nav-brand">
             <!-- Updated Logo Path -->
-            <img src="images/header-logo.png" alt="Spendkey" style="height: 40px; width: auto;">
+            <img src="images/header-logo.png" alt="Spendkey" style="height: 70px; width: auto;">
         </a>
         <div class="slide-nav">
             <a href="#hero" title="Start"></a>
+            <a href="#toc" title="Agenda"></a>
+            <a href="#whynow" title="Why Now"></a>
             <a href="#problem" title="The Problem"></a>
             <a href="#vision" title="The Vision"></a>
             <a href="#architecture" title="Architecture"></a>
             <a href="#logic" title="Matching Logic"></a>
             <a href="#hitl" title="Human-in-the-Loop"></a>
             <a href="#mvp" title="MVP"></a>
+            <a href="#intelligence" title="C-Suite Intelligence"></a>
             <a href="#roadmap" title="Roadmap"></a>
             <a href="#team" title="Team"></a>
             <a href="#close" title="Future"></a>
@@ -504,6 +584,11 @@
         <div style="margin-top: 4rem;">
             <p style="color: var(--sk-text-muted); font-size: 1rem;">PREPARED FOR THE BOARD</p>
             <p style="color: var(--sk-white); font-weight: 600;">By Givaldo</p>
+            <div
+                style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--sk-green); background: rgba(155, 255, 182, 0.05);">
+                <p style="margin: 0; font-size: 1.1rem; color: var(--sk-green);">"This is not an AI project.<br>This is
+                    a financial governance platform."</p>
+            </div>
         </div>
 
         <!-- Animated decorative element -->
@@ -512,38 +597,97 @@
         </div>
     </section>
 
-    <!-- ==================== SLIDE 2: THE PROBLEM ==================== -->
-    <section id="problem">
-        <h2>The Invisible Leakage</h2>
-        <p>Most organizations lose margin not because of bad sales, but because <strong>contracts don't talk to each
-                other</strong>.</p>
-
-        <div class="comparison">
-            <div class="comparison-before">
-                <h3>&#x274C; Current State: Mismatch</h3>
-                <ul>
-                    <li><strong>Sales Promise:</strong> Fixed Price Multi-Year</li>
-                    <li><strong>Supplier Reality:</strong> "Costs + CPI" (Variable)</li>
-                    <li><strong>Result:</strong> Margin erosion over time</li>
-                    <li><strong style="color: var(--sk-red);">Risk:</strong> $5M - $15M Annual Exposure</li>
+    <!-- ==================== SLIDE 1.5: TOC ==================== -->
+    <section id="toc">
+        <h2>Agenda</h2>
+        <div class="grid-2">
+            <div>
+                <ul style="list-style: none; font-size: 1.5rem; line-height: 1.8;">
+                    <li><span style="color: var(--sk-blue);">00.</span> Executive Summary</li>
+                    <li><span style="color: var(--sk-blue);">01.</span> Technical Architecture</li>
+                    <li><span style="color: var(--sk-blue);">2a.</span> Normalising Obligations</li>
+                    <li><span style="color: var(--sk-blue);">2b.</span> Many-to-Many Resolution</li>
                 </ul>
             </div>
-
-            <div class="comparison-after">
-                <h3>&#x2705; Future State: Integrity</h3>
-                <ul>
-                    <li><strong>Automated Check:</strong> Sales vs Supplier Contracts</li>
-                    <li><strong>Real-time Alert:</strong> "Deal margin negative by Year 2"</li>
-                    <li><strong>Result:</strong> Protected Profitability</li>
-                    <li><strong style="color: var(--sk-green);">Impact:</strong> 1-3% Net Profit Recovery</li>
+            <div>
+                <ul style="list-style: none; font-size: 1.5rem; line-height: 1.8;">
+                    <li><span style="color: var(--sk-blue);">03.</span> Human-in-the-Loop (HITL)</li>
+                    <li><span style="color: var(--sk-blue);">04.</span> Project Roadmap (MVP & Team)</li>
+                    <li><span style="color: var(--sk-blue);">05.</span> A Sample Project Plan</li>
+                    <li><span style="color: var(--sk-blue);">06.</span> Dynamic Dashboards (NLQ)</li>
                 </ul>
             </div>
         </div>
     </section>
 
+    <!-- ==================== SLIDE 1.6: WHY NOW ==================== -->
+    <section id="whynow">
+        <h2>00. Executive Summary: Why Now?</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Contract Complexity</h3>
+                <p>Exploding volume of documents makes manual audit impossible.</p>
+            </div>
+            <div class="card">
+                <h3>Supplier Volatility</h3>
+                <p>Inflation and supply chain risks are rising.</p>
+            </div>
+            <div class="card">
+                <h3>AI Readiness</h3>
+                <p>LLMs are finally production-ready for semantic understanding.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 2: THE PROBLEM ==================== -->
+    <section id="problem">
+        <h2>00. Executive Summary: The Challenge</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Our client — a <strong>PE-backed business</strong> — faces a
+            fundamental misalignment between
+            <strong>Sales Promises</strong> (Revenue Contracts) and <strong>Supplier Realities</strong> (Purchase
+            Contracts).
+        </p>
+
+        <div class="grid-2" style="margin-bottom: 2rem;">
+            <div class="card" style="border-top: 4px solid var(--sk-red);">
+                <div
+                    style="color: var(--sk-red); font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; letter-spacing: 0.05em;">
+                    LEAKAGE TYPE 1</div>
+                <h3>Price Mismatches</h3>
+                <p>Selling a service at a price that doesn't cover the <strong>fluctuating costs</strong> of third-party
+                    inputs.</p>
+                <div
+                    style="margin-top: 1.2rem; padding: 0.8rem; background: rgba(255,77,106,0.1); border-radius: 8px; border: 1px solid rgba(255,77,106,0.2);">
+                    <div style="font-size: 0.85rem; color: var(--sk-text-muted);">Example</div>
+                    <div style="font-size: 0.95rem;">Customer locked at fixed annual price.<br>Supplier contract
+                        includes <strong>CPI-linked inflation clause</strong>.<br>→ Margin erodes each year.</div>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 4px solid var(--sk-orange);">
+                <div
+                    style="color: var(--sk-orange); font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; letter-spacing: 0.05em;">
+                    LEAKAGE TYPE 2</div>
+                <h3>SLA Exposure</h3>
+                <p>Promising the customer an SLA that the <strong>supplier's contract doesn't support</strong>.</p>
+                <div
+                    style="margin-top: 1.2rem; padding: 0.8rem; background: rgba(250,204,21,0.1); border-radius: 8px; border: 1px solid rgba(250,204,21,0.2);">
+                    <div style="font-size: 0.85rem; color: var(--sk-text-muted);">Example</div>
+                    <div style="font-size: 0.95rem;">Customer promised <strong>99.9% uptime</strong>.<br>Supplier only
+                        guarantees <strong>99.5%</strong>.<br>→ Penalty risk sits with us.</div>
+                </div>
+            </div>
+        </div>
+
+        <p
+            style="font-size: 1.3rem; color: var(--sk-white); display: inline-block; padding: 0.6rem 1.2rem; border-radius: 999px; background: rgba(0, 168, 253, 0.12); border: 1px solid rgba(0, 168, 253, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
+            "This leakage is rarely detected in audits — it surfaces in financial results."
+        </p>
+    </section>
+
     <!-- ==================== SLIDE 3: THE VISION ==================== -->
     <section id="vision">
-        <h2>From Reactive to Preventive</h2>
+        <h2>00. Executive Summary: The Vision</h2>
 
         <div class="impact-box">
             <p class="impact-text">
@@ -573,197 +717,563 @@
 
     <!-- ==================== SLIDE 4: ARCHITECTURE ==================== -->
     <section id="architecture">
-        <h2>Technical Architecture</h2>
-        <p>An end-to-end pipeline leveraging Document AI and Knowledge Graphs.</p>
+        <h2>1. Technical Architecture</h2>
+        <p>A high-level system diagram: from unstructured PDFs to linked contract obligations.</p>
 
         <div class="content-box">
             <pre class="mermaid">
-            flowchart LR
-                subgraph Ingestion
-                A[PDF Contracts<br/>Sales/Procure] --> B(OCR / Textract)
-                end
+flowchart LR
+    subgraph "1 — Ingestion"
+        CRM["Sales PDFs\n(CRM)"] --> OCR["Document AI\n(OCR + Layout)"]
+        ERP["Procurement PDFs\n(ERP)"] --> OCR
+    end
 
-                subgraph "AI Core"
-                B --> C{LLM Extraction}
-                C --> D[Structured JSON<br/>Obligations]
-                D --> E[(Knowledge Graph<br/>Neo4j)]
-                end
+    subgraph "2 — Obligation Extraction (LLM)"
+        OCR --> LLM["LLM\nExtraction"]
+        LLM --> OB["Obligations"]
+    end
 
-                subgraph "Decision Layer"
-                E --> F[Semantic Matching<br/>Vector Search]
-                F --> G[Margin Risk<br/>Calculator]
-                end
+    subgraph "3 — Semantic Entity Matching"
+        OB --> KG["Knowledge\nGraph"]
+        KG --> SEM["Entity Matcher\nSales ↔ Purchase"]
+        SEM --> OUT["Linked Contract\nPairs"]
+    end
 
-                subgraph "Human Loop"
-                G --> H{Risk detected?}
-                H -->|Yes| I[Auditor Workbench<br/>Approve/Reject]
-                I -->|Feedback| C
-                end
+    style CRM fill:#1e3a5f,stroke:#00A8FD,color:#fff
+    style ERP fill:#1e3a5f,stroke:#00A8FD,color:#fff
+    style OCR fill:#1e293b,stroke:#94a3b8,color:#fff
+    style LLM fill:#0f172a,stroke:#facc15,color:#fff
+    style OB fill:#1e293b,stroke:#9BFFB6,color:#fff
+    style KG fill:#032C46,stroke:#9BFFB6,stroke-width:2px,color:#fff
+    style SEM fill:#0f172a,stroke:#00A8FD,color:#fff
+    style OUT fill:#032C46,stroke:#9BFFB6,stroke-width:2px,color:#fff
+</pre>
+        </div>
 
-                style A fill:#334155,stroke:#fff
-                style B fill:#1e293b,stroke:#00A8FD
-                style C fill:#0f172a,stroke:#facc15
-                style D fill:#1e293b,stroke:#00A8FD
-                style E fill:#032C46,stroke:#9BFFB6,stroke-width:2px,color:#fff
-                style F fill:#0f172a,stroke:#00A8FD
-                style I fill:#334155,stroke:#00A8FD
-                </pre>
-            <span style="font-size: 0.9rem; color: var(--sk-text-muted); margin-top: 1rem;">Figure: Data flows from
-                unstructured PDF to structural financial alerts.</span>
+        <div class="grid-3" style="margin-top: 1.5rem; text-align: center;">
+            <div class="card" style="border-top: 3px solid var(--sk-blue);">
+                <h3 style="font-size: 1.1rem;">1. Ingestion</h3>
+                <p style="font-size: 0.95rem;">Unstructured PDFs from <strong>CRM</strong> (Sales) and
+                    <strong>ERP</strong> (Procurement) are parsed via OCR with layout understanding.
+                </p>
+            </div>
+            <div class="card" style="border-top: 3px solid #facc15;">
+                <h3 style="font-size: 1.1rem;">2. LLM Extraction</h3>
+                <p style="font-size: 0.95rem;">Extract <strong>Obligations</strong>: Prices, Inflation clauses, SLAs,
+                    and Liabilities from each contract.</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--sk-green);">
+                <h3 style="font-size: 1.1rem;">3. Semantic Matching</h3>
+                <p style="font-size: 0.95rem;">Link each <strong>Sales contract</strong> to its specific supporting
+                    <strong>Purchase contracts</strong> via entity resolution.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- ==================== SLIDE 5: MATCHING LOGIC ==================== -->
-    <section id="logic">
-        <h2>The "Matching" Logic</h2>
-        <p>Solving the vocabulary mismatch with Semantic Normalization.</p>
+    <!-- ==================== SLIDE 5a: NORMALISING TERMINOLOGY ==================== -->
+    <section id="normalisation">
+        <h2>2a. The Matching Logic: Normalising Obligations</h2>
+        <div style="margin-bottom: 1.2rem; border-left: 4px solid var(--sk-blue); padding-left: 1rem;">
+            <p style="font-size: 1.2rem; color: var(--sk-white); font-weight: 600; margin: 0;">"We don't normalise
+                labels — we normalise obligations."</p>
+        </div>
 
         <div class="grid-2">
+            <!-- LEFT: From text to structured obligation -->
             <div class="card">
-                <h3>1. Ontology Normalization</h3>
-                <p>Humans use different words. AI standardizes them.</p>
-                <div class="ui-mockup" style="background: rgba(0,0,0,0.3); border: none; box-shadow: none;">
-                    <div style="color: var(--sk-red); text-decoration: line-through;">"Premium Support"</div>
-                    <div style="text-align: center; color: #555;">&#x2193;</div>
-                    <div style="color: var(--sk-green); font-weight: bold; font-size: 1.2rem;">[SUPPORT_TIER_1]</div>
-                    <hr style="border-color: #333; margin: 15px 0;">
-                    <div style="color: var(--sk-red); text-decoration: line-through;">"Gold Tier Response"</div>
-                    <div style="text-align: center; color: #555;">&#x2193;</div>
-                    <div style="color: var(--sk-green); font-weight: bold; font-size: 1.2rem;">[SUPPORT_TIER_1]</div>
+                <h3>From Text → Structured Obligation</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Contracts <strong>never</strong> use the same
+                    language. Comparing text will always fail. Instead, an LLM extracts <strong>structured
+                        attributes</strong> from each clause.</p>
+
+                <!-- The example transformation -->
+                <div class="ui-mockup"
+                    style="background: rgba(0,0,0,0.3); border: none; box-shadow: none; padding: 1rem;">
+                    <div
+                        style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.5rem; align-items: center; text-align: center; margin-bottom: 0.8rem;">
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--sk-text-muted); margin-bottom: 4px;">SALES
+                                CONTRACT</div>
+                            <div style="color: var(--sk-red); font-weight: 600; font-size: 0.95rem;">"Premium Support"
+                            </div>
+                        </div>
+                        <div style="color: var(--sk-blue); font-size: 1.2rem;">↔</div>
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--sk-text-muted); margin-bottom: 4px;">SUPPLIER
+                                CONTRACT</div>
+                            <div style="color: var(--sk-red); font-weight: 600; font-size: 0.95rem;">"Tier 1 Incident
+                                Response<br>with 24/7 coverage"</div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; color: #555; font-size: 0.8rem; margin: 0.5rem 0;">↓ LLM extracts
+                        structured attributes ↓</div>
+
+                    <!-- Structured Service Card -->
+                    <div
+                        style="background: rgba(155,255,182,0.06); border: 1px solid rgba(155,255,182,0.2); border-radius: 6px; padding: 0.8rem; font-size: 0.8rem;">
+                        <div style="color: var(--sk-green); font-weight: 700; margin-bottom: 6px; font-size: 0.85rem;">
+                            Canonical Obligation: Critical Support Tier</div>
+                        <div style="display: grid; grid-template-columns: auto 1fr; gap: 3px 10px;">
+                            <span style="color: var(--sk-text-muted);">Service:</span> <span>Technical Support</span>
+                            <span style="color: var(--sk-text-muted);">Coverage:</span> <span>24/7</span>
+                            <span style="color: var(--sk-text-muted);">Response (P1):</span> <span>30 min</span>
+                            <span style="color: var(--sk-text-muted);">Channels:</span> <span>Phone + Portal</span>
+                            <span style="color: var(--sk-text-muted);">Escalation:</span> <span
+                                style="color: var(--sk-green);">Yes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.8rem; margin-top: 0.8rem; color: var(--sk-text-muted);">Now you can
+                    <strong>compare</strong>, <strong>calculate gaps</strong>, <strong>generate risk</strong>, and
+                    <strong>automate audit</strong> — without depending on labels.
+                </p>
+            </div>
+
+            <!-- RIGHT: Hybrid Strategy -->
+            <div class="card">
+                <h3>Hybrid Normalisation Strategy</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">A <strong>Contract Ontology</strong> (also:
+                    Canonical Model, Service Taxonomy) that combines deterministic precision with AI recall.</p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                    <div
+                        style="padding: 10px 12px; background: rgba(0,168,253,0.08); border-radius: 6px; border-left: 4px solid var(--sk-blue);">
+                        <strong>1. Deterministic Layer</strong>
+                        <div style="font-size: 0.78rem; color: var(--sk-text-muted); margin-top: 2px;">Dictionary rules,
+                            synonym maps, industry acronyms. <span style="color: var(--sk-green);">High
+                                precision.</span></div>
+                    </div>
+                    <div
+                        style="padding: 10px 12px; background: rgba(250,204,21,0.06); border-radius: 6px; border-left: 4px solid #facc15;">
+                        <strong>2. Semantic Layer (Embeddings)</strong>
+                        <div style="font-size: 0.78rem; color: var(--sk-text-muted); margin-top: 2px;">Captures
+                            equivalence even with different language.<br><em>"Mission Critical Support" ≈ "Tier 1
+                                Support"</em> — <span style="color: var(--sk-green);">High recall.</span></div>
+                    </div>
+                    <div
+                        style="padding: 10px 12px; background: rgba(155,255,182,0.06); border-radius: 6px; border-left: 4px solid var(--sk-green);">
+                        <strong>3. LLM Structured Extraction</strong>
+                        <div style="font-size: 0.78rem; color: var(--sk-text-muted); margin-top: 2px;">Generates the
+                            structured "obligation card" with all comparable attributes.</div>
+                    </div>
+                    <div
+                        style="padding: 10px 12px; background: rgba(255,77,106,0.06); border-radius: 6px; border-left: 4px solid var(--sk-red);">
+                        <strong>4. Confidence Scoring</strong>
+                        <div style="font-size: 0.78rem; color: var(--sk-text-muted); margin-top: 2px;">If confidence
+                            &lt; threshold → <strong>human review</strong>. Enterprises demand
+                            <strong>explainability</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 0.8rem; padding: 6px 10px; background: rgba(0,168,253,0.06); border-radius: 6px; border: 1px solid rgba(0,168,253,0.15); font-size: 0.8rem; text-align: center;">
+                    Without this layer → <strong>impossible to scale</strong> contract analysis.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 5b: MANY-TO-MANY ==================== -->
+    <section id="many-to-many">
+        <h2>2b. The Matching Logic: Many-to-Many Resolution</h2>
+        <div style="margin-bottom: 1.2rem; border-left: 4px solid var(--sk-green); padding-left: 1rem;">
+            <p style="font-size: 1.2rem; color: var(--sk-white); font-weight: 600; margin: 0;">"Matching is not a
+                pairwise problem — it's a coverage problem."</p>
+        </div>
+
+        <div class="grid-2" style="align-items: start;">
+            <!-- LEFT: Graph Model -->
+            <div class="card" style="border-top: 4px solid var(--sk-blue);">
+                <h3 style="font-size: 1rem;">Graph, Not Relational Joins</h3>
+                <p style="font-size: 0.82rem; margin-bottom: 0.5rem; color: var(--sk-text-muted);">This is a
+                    <strong>dependency problem</strong>, not just a data problem. We model it as a graph.
+                </p>
+
+                <div style="padding: 0.3rem 0;">
+                    <pre class="mermaid">
+flowchart LR
+    SC["Sales Contract\n(Customer A)"] -->|DEPENDS_ON| S1["Supplier 1"]
+    SC -->|DEPENDS_ON| S2["Supplier 2"]
+    SC -->|DEPENDS_ON| S3["Supplier 3"]
+    SC -->|DEPENDS_ON| S4["Supplier 4"]
+    SC -->|DEPENDS_ON| S5["Supplier 5"]
+
+    S1 -->|SHARED_BY| C2["Customer B"]
+    S1 -->|SHARED_BY| C3["Customer C"]
+    S1 -->|SHARED_BY| C4["Customer D"]
+    S1 -->|SHARED_BY| C5["Customer E"]
+
+    style SC fill:#1e3a5f,stroke:#00A8FD,color:#fff
+    style S1 fill:#032C46,stroke:#9BFFB6,color:#fff
+    style S2 fill:#032C46,stroke:#9BFFB6,color:#fff
+    style S3 fill:#032C46,stroke:#9BFFB6,color:#fff
+    style S4 fill:#032C46,stroke:#9BFFB6,color:#fff
+    style S5 fill:#032C46,stroke:#9BFFB6,color:#fff
+    style C2 fill:#1e3a5f,stroke:#00A8FD,color:#fff
+    style C3 fill:#1e3a5f,stroke:#00A8FD,color:#fff
+    style C4 fill:#1e3a5f,stroke:#00A8FD,color:#fff
+    style C5 fill:#1e3a5f,stroke:#00A8FD,color:#fff
+</pre>
+                </div>
+
+                <!-- Graph Model -->
+                <div style="font-size: 0.78rem; margin-top: 0.5rem;">
+                    <div style="font-weight: 600; color: var(--sk-white); margin-bottom: 4px;">Graph Model:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                        <div style="padding: 4px 6px; background: rgba(0,168,253,0.08); border-radius: 4px;">
+                            <strong>Nodes:</strong> Sales Contract, Obligation, Supplier Contract, Capability
+                        </div>
+                        <div style="padding: 4px 6px; background: rgba(155,255,182,0.08); border-radius: 4px;">
+                            <strong>Edges:</strong> FULFILLS, DEPENDS_ON, SHARED_BY
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
-                <h3>2. Graph Resolution</h3>
-                <p>Handling Many-to-Many relationships.</p>
-                <div class="mermaid" style="padding: 1rem;">
-flowchart TD
-    C["Customer A"] -->|Sales Contract| P["Product X"]
-    P -->|Requires| S1["Backend Service"]
-    P -->|Requires| S2["Support SLA"]
-    S1 -->|Provided By| V1["Vendor AWS"]
-    S2 -->|Provided By| V2["Vendor Zendesk"]
+            <!-- RIGHT: Advanced Concepts -->
+            <div class="card" style="border-top: 4px solid var(--sk-green);">
+                <h3 style="font-size: 1rem;">Why Graph Enables What SQL Can't</h3>
 
-    style C fill:#334155
-    style P fill:#00A8FD,color:#fff
-    style V1 fill:#032C46,stroke:#9BFFB6,color:#fff
-    style V2 fill:#032C46,stroke:#9BFFB6,color:#fff
+                <!-- Composite Coverage -->
+                <div
+                    style="margin-bottom: 0.8rem; padding: 10px; background: rgba(250,204,21,0.06); border-radius: 6px; border: 1px solid rgba(250,204,21,0.15);">
+                    <div style="font-weight: 600; font-size: 0.9rem; color: #facc15; margin-bottom: 4px;">Composite
+                        Coverage</div>
+                    <p style="font-size: 0.8rem; margin: 0;">No single supplier covers the full SLA. But
+                        <strong>together</strong> they do:
+                    </p>
+                    <div style="font-size: 0.75rem; margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;">
+                        <span
+                            style="padding: 2px 8px; background: rgba(155,255,182,0.1); border-radius: 4px; border: 1px solid rgba(155,255,182,0.2);">S1:
+                            Monitoring</span>
+                        <span style="padding: 2px 6px; color: var(--sk-text-muted);">+</span>
+                        <span
+                            style="padding: 2px 8px; background: rgba(155,255,182,0.1); border-radius: 4px; border: 1px solid rgba(155,255,182,0.2);">S2:
+                            On-call</span>
+                        <span style="padding: 2px 6px; color: var(--sk-text-muted);">+</span>
+                        <span
+                            style="padding: 2px 8px; background: rgba(155,255,182,0.1); border-radius: 4px; border: 1px solid rgba(155,255,182,0.2);">S3:
+                            Hardware</span>
+                        <span style="padding: 2px 6px; color: var(--sk-text-muted);">=</span>
+                        <span
+                            style="padding: 2px 8px; background: rgba(155,255,182,0.15); border-radius: 4px; border: 1px solid var(--sk-green); color: var(--sk-green); font-weight: 600;">Full
+                            SLA ✓</span>
+                    </div>
+                </div>
+
+                <!-- Capacity Awareness -->
+                <div
+                    style="margin-bottom: 0.8rem; padding: 10px; background: rgba(255,77,106,0.06); border-radius: 6px; border: 1px solid rgba(255,77,106,0.15);">
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--sk-red); margin-bottom: 4px;">Capacity
+                        Awareness</div>
+                    <p style="font-size: 0.8rem; margin: 0;">A supplier offers "100 support hours/month" — but
+                        <strong>10 customers depend on it</strong>. Are we over-allocating?
+                    </p>
+                    <div style="font-size: 0.78rem; margin-top: 6px; color: var(--sk-red);"><strong>→ Operational
+                            risk</strong> that executives need to see.</div>
+                </div>
+
+                <!-- Impact Analysis -->
+                <div
+                    style="margin-bottom: 0.8rem; padding: 10px; background: rgba(0,168,253,0.06); border-radius: 6px; border: 1px solid rgba(0,168,253,0.15);">
+                    <div style="font-weight: 600; font-size: 0.9rem; color: var(--sk-blue); margin-bottom: 4px;">Impact
+                        & Risk Propagation</div>
+                    <p style="font-size: 0.8rem; margin: 0;">If Supplier X fails → <strong>which customers are
+                            impacted?</strong> Where is <strong>concentration risk?</strong> Graph traversal answers
+                        this instantly.</p>
+                </div>
+
+                <!-- Closing quote -->
+                <div
+                    style="padding: 8px 10px; background: rgba(155,255,182,0.06); border-radius: 6px; border: 1px solid rgba(155,255,182,0.15); text-align: center; font-size: 0.85rem;">
+                    <em>"The goal of the comparison engine is not similarity — it is <strong>contractual
+                            assurance</strong>."</em>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- ==================== SLIDE 6: HITL ==================== -->
     <section id="hitl">
-        <h2>Human-in-the-Loop (HITL)</h2>
-        <p>Trust, but verify. The AI recommends -> The Auditor decides.</p>
+        <h2>3. Human-in-the-Loop (HITL)</h2>
+        <div style="margin-bottom: 1.5rem; border-left: 4px solid var(--sk-blue); padding-left: 1rem;">
+            <p style="font-size: 1.3rem; color: var(--sk-white); font-weight: 600; margin: 0;">"AI operates at scale.
+                Humans operate at judgment."</p>
+        </div>
 
-        <div class="grid-2" style="align-items: center;">
-            <div class="ui-mockup">
-                <div class="ui-alert">
-                    <span>&#x26A0;</span> MARGIN RISK #1024 DETECTED
-                </div>
+        <div class="grid-2" style="align-items: start;">
+            <!-- LEFT: Contract Auditor Workbench -->
+            <div class="card">
+                <h3>Contract Auditor Workbench</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Side-by-side clause comparison for mismatch
+                    verification.</p>
 
-                <div class="ui-row">
-                    <span>Customer Price Uplift:</span>
-                    <span style="color: var(--sk-green);">+2.0% (Capped)</span>
-                </div>
-                <div class="ui-row">
-                    <span>Supplier Inflation (CPI):</span>
-                    <span style="color: var(--sk-red);">+4.5% (Projected)</span>
-                </div>
-                <div class="ui-row">
-                    <span>Net Margin Impact:</span>
-                    <span style="color: var(--sk-red); font-weight: bold;">-2.5%</span>
-                </div>
+                <div class="ui-mockup" style="padding: 1rem; font-size: 0.85rem;">
+                    <div class="ui-alert" style="font-size: 0.8rem; padding: 8px 12px; margin-bottom: 12px;">
+                        <span>&#x26A0;</span> MISMATCH #1024 — Price Escalation Risk
+                        <span
+                            style="float: right; background: rgba(255,77,106,0.2); padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; color: var(--sk-red);">87%
+                            confidence</span>
+                    </div>
 
-                <div style="margin-top: 20px;">
-                    <button class="btn btn-primary">Confirm Risk</button>
-                    <button class="btn btn-danger">Flag False Positive</button>
+                    <!-- Side-by-side clauses -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                        <div
+                            style="padding: 8px; background: rgba(0,168,253,0.08); border-radius: 6px; border: 1px solid rgba(0,168,253,0.2);">
+                            <div
+                                style="font-size: 0.65rem; color: var(--sk-blue); font-weight: 600; margin-bottom: 4px;">
+                                SALES CONTRACT</div>
+                            <div style="font-size: 0.8rem;">"Fixed annual price of <strong>£120,000/yr</strong> for 3
+                                years"</div>
+                        </div>
+                        <div
+                            style="padding: 8px; background: rgba(255,77,106,0.08); border-radius: 6px; border: 1px solid rgba(255,77,106,0.2);">
+                            <div
+                                style="font-size: 0.65rem; color: var(--sk-red); font-weight: 600; margin-bottom: 4px;">
+                                SUPPLIER CONTRACT</div>
+                            <div style="font-size: 0.8rem;">"Annual price adjusted per <strong>CPI</strong> (current:
+                                +4.5%)"</div>
+                        </div>
+                    </div>
+
+                    <!-- Attribute comparison -->
+                    <div style="font-size: 0.75rem; margin-bottom: 12px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; text-align: center;">
+                            <div
+                                style="padding: 4px; background: rgba(255,255,255,0.05); border-radius: 3px; color: var(--sk-text-muted);">
+                                Attribute</div>
+                            <div
+                                style="padding: 4px; background: rgba(255,255,255,0.05); border-radius: 3px; color: var(--sk-text-muted);">
+                                Sales</div>
+                            <div
+                                style="padding: 4px; background: rgba(255,255,255,0.05); border-radius: 3px; color: var(--sk-text-muted);">
+                                Supplier</div>
+                            <div style="padding: 4px;">Pricing</div>
+                            <div style="padding: 4px; color: var(--sk-green);">Fixed</div>
+                            <div style="padding: 4px; color: var(--sk-red);">CPI-linked</div>
+                            <div style="padding: 4px;">Term</div>
+                            <div style="padding: 4px; color: var(--sk-green);">3 years</div>
+                            <div style="padding: 4px; color: var(--sk-green);">3 years</div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" style="font-size: 0.75rem; padding: 5px 10px;">✓ Confirm
+                            Mismatch</button>
+                        <button class="btn btn-danger" style="font-size: 0.75rem; padding: 5px 10px;">✗ False
+                            Positive</button>
+                        <button class="btn"
+                            style="font-size: 0.75rem; padding: 5px 10px; background: rgba(155,255,182,0.15); border: 1px solid rgba(155,255,182,0.3); color: var(--sk-green);">+
+                            Add Synonym Rule</button>
+                    </div>
                 </div>
             </div>
 
-            <div style="padding-left: 2rem;">
+            <!-- RIGHT: Active Learning -->
+            <div class="card">
                 <h3>Active Learning Loop</h3>
-                <ol style="list-style: none; counter-reset: hitl-counter;">
-                    <li style="margin-bottom: 2rem;">
-                        <span class="step-number">1</span>
-                        Auditor corrects a mismatch.
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Every correction makes the system smarter. Over
+                    time, human interventions <strong>decrease</strong>.</p>
+
+                <ol style="list-style: none; counter-reset: hitl-counter; font-size: 0.9rem;">
+                    <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span class="step-number" style="flex-shrink: 0;">1</span>
+                        <div>AI flags mismatch with <strong>confidence score</strong> + clause evidence.</div>
                     </li>
-                    <li style="margin-bottom: 2rem;">
-                        <span class="step-number">2</span>
-                        Correction writes back to Training Dataset.
+                    <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span class="step-number" style="flex-shrink: 0;">2</span>
+                        <div>Auditor reviews <strong>side-by-side</strong> comparison (Sales vs Supplier clause).</div>
                     </li>
-                    <li>
-                        <span class="step-number">3</span>
-                        Model retrains: "Next time, know that 'Gold Support' = 'Tier 1'".
+                    <li style="margin-bottom: 1.2rem; display: flex; align-items: flex-start; gap: 10px;">
+                        <span class="step-number" style="flex-shrink: 0;">3</span>
+                        <div>Decision feeds back:
+                            <div style="font-size: 0.8rem; margin-top: 4px; color: var(--sk-text-muted);">
+                                <strong style="color: var(--sk-green);">Confirmed</strong> → strengthens matching
+                                rule<br>
+                                <strong style="color: var(--sk-red);">False Positive</strong> → creates exclusion<br>
+                                <strong style="color: var(--sk-blue);">New synonym</strong> → added to taxonomy
+                            </div>
+                        </div>
+                    </li>
+                    <li style="display: flex; align-items: flex-start; gap: 10px;">
+                        <span class="step-number" style="flex-shrink: 0;">4</span>
+                        <div>Dictionary grows → confidence rises → <strong>fewer human reviews needed</strong>.</div>
                     </li>
                 </ol>
+
+                <!-- Progression visual -->
+                <div
+                    style="margin-top: 1.2rem; padding: 0.8rem; background: rgba(0,168,253,0.06); border-radius: 8px; border: 1px solid rgba(0,168,253,0.15);">
+                    <div style="font-size: 0.75rem; color: var(--sk-text-muted); margin-bottom: 6px; font-weight: 600;">
+                        AUTO-RESOLUTION RATE</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.7rem; color: var(--sk-text-muted);">Month 1</div>
+                            <div style="font-size: 1.3rem; font-weight: bold; color: var(--sk-orange);">60%</div>
+                        </div>
+                        <div
+                            style="flex: 1; height: 4px; background: linear-gradient(to right, var(--sk-orange), var(--sk-green)); border-radius: 2px;">
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.7rem; color: var(--sk-text-muted);">Month 6</div>
+                            <div style="font-size: 1.3rem; font-weight: bold; color: var(--sk-green);">90%</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== SLIDE 7: MVP STRATEGY ==================== -->
     <section id="mvp">
-        <h2>MVP: Targeting ROI</h2>
-        <p>We don't boil the ocean. We stop the bleeding first.</p>
+        <h2>4. Project Roadmap (MVP)</h2>
+        <p>An MVP scoped to deliver <strong>measurable value in 6 weeks</strong> — focused on the two leakage types with
+            the highest financial impact.</p>
 
+        <div class="grid-2" style="margin-bottom: 1.5rem;">
+            <!-- MVP Scope -->
+            <div class="card" style="border-top: 3px solid var(--sk-green);">
+                <h3 style="color: var(--sk-green); font-size: 1.1rem;">✓ MVP Scope (Weeks 1–6)</h3>
+                <ul style="font-size: 0.9rem; padding-left: 1.2rem; line-height: 1.8;">
+                    <li>PDF ingestion from <strong>CRM + ERP</strong> (top 50 contracts)</li>
+                    <li>LLM extraction of <strong>prices, inflation clauses, SLAs</strong></li>
+                    <li>Rule-based + embedding matching (ontology v1)</li>
+                    <li>Auditor Workbench with <strong>HITL review queue</strong></li>
+                    <li>Mismatch dashboard with <strong>top-10 risk report</strong></li>
+                </ul>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--sk-text-muted);">
+                <h3 style="color: var(--sk-text-muted); font-size: 1.1rem;">✗ Deferred (Phase 2+)</h3>
+                <ul style="font-size: 0.9rem; padding-left: 1.2rem; line-height: 1.8; color: var(--sk-text-muted);">
+                    <li>Full knowledge graph (many-to-many resolution)</li>
+                    <li>Real-time deal-desk scoring (pre-signature)</li>
+                    <li>NLQ dashboard for C-suite</li>
+                    <li>Full ERP/CRM API integration (batch import first)</li>
+                    <li>Automated renegotiation recommendations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Priority targets -->
         <div class="grid-3">
             <div class="card" style="border-top: 4px solid var(--sk-red);">
-                <div style="color: var(--sk-red); font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">PRIORITY 1
-                </div>
-                <h3>Price Mismatches</h3>
-                <p>Selling for less than cost due to outdated price books.</p>
                 <div
-                    style="font-size: 0.8rem; opacity: 0.8; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                    Impact: Immediate Cashflow</div>
+                    style="color: var(--sk-red); font-weight: bold; margin-bottom: 8px; font-size: 0.75rem; letter-spacing: 0.05em;">
+                    PRIORITY 1 — HIGHEST ROI</div>
+                <h3 style="font-size: 1.1rem;">Price Mismatches</h3>
+                <p style="font-size: 0.85rem;">Detect contracts where <strong>cost exceeds revenue</strong> due to
+                    supplier price changes not reflected in sales pricing.</p>
+                <div
+                    style="font-size: 0.8rem; margin-top: 0.8rem; padding: 0.6rem; background: rgba(255,77,106,0.08); border-radius: 6px; border: 1px solid rgba(255,77,106,0.15);">
+                    <div style="color: var(--sk-text-muted); margin-bottom: 4px;">Success Metric:</div>
+                    <div><strong>Identify ≥£X</strong> in recoverable margin within the first 50 contracts.</div>
+                </div>
             </div>
             <div class="card" style="border-top: 4px solid var(--sk-orange);">
-                <div style="color: var(--sk-orange); font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">
-                    PRIORITY 2</div>
-                <h3>Inflation Clauses</h3>
-                <p>Uncapped supplier price hikes that exceed customer pass-through.</p>
                 <div
-                    style="font-size: 0.8rem; opacity: 0.8; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                    Impact: Long-term Erosion</div>
+                    style="color: var(--sk-orange); font-weight: bold; margin-bottom: 8px; font-size: 0.75rem; letter-spacing: 0.05em;">
+                    PRIORITY 2 — COMPOUNDING RISK</div>
+                <h3 style="font-size: 1.1rem;">Inflation Clause Gaps</h3>
+                <p style="font-size: 0.85rem;">Flag supplier contracts with <strong>CPI-linked escalations</strong> that
+                    aren't matched by customer price adjustments.</p>
+                <div
+                    style="font-size: 0.8rem; margin-top: 0.8rem; padding: 0.6rem; background: rgba(250,204,21,0.08); border-radius: 6px; border: 1px solid rgba(250,204,21,0.15);">
+                    <div style="color: var(--sk-text-muted); margin-bottom: 4px;">Success Metric:</div>
+                    <div><strong>Map 100%</strong> of inflation clauses across active contracts.</div>
+                </div>
             </div>
             <div class="card" style="border-top: 4px solid #facc15;">
-                <div style="color: #facc15; font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">PRIORITY 3</div>
-                <h3>SLA Penalties</h3>
-                <p>Promising 99.9% uptime when supplier only guarantees 99.5%.</p>
                 <div
-                    style="font-size: 0.8rem; opacity: 0.8; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                    Impact: Legal Risk</div>
+                    style="color: #facc15; font-weight: bold; margin-bottom: 8px; font-size: 0.75rem; letter-spacing: 0.05em;">
+                    PRIORITY 3 — LIABILITY EXPOSURE</div>
+                <h3 style="font-size: 1.1rem;">SLA Exposure</h3>
+                <p style="font-size: 0.85rem;">Identify where customer SLA promises <strong>exceed supplier
+                        guarantees</strong> (e.g., 99.9% vs 99.5% uptime).</p>
+                <div
+                    style="font-size: 0.8rem; margin-top: 0.8rem; padding: 0.6rem; background: rgba(250,204,21,0.08); border-radius: 6px; border: 1px solid rgba(250,204,21,0.15);">
+                    <div style="color: var(--sk-text-muted); margin-bottom: 4px;">Success Metric:</div>
+                    <div><strong>Flag all SLA gaps</strong> with penalty-risk quantification.</div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ==================== SLIDE 7.1: TEAM ==================== -->
+    <section id="team">
+        <h2>Project Roadmap (Team)</h2>
+        <p style="margin-bottom: 2rem; color: var(--sk-green);">"Designed for speed, not organizational drag."</p>
+        <div class="grid-4" style="text-align: center;">
+            <div class="card">
+                <div
+                    style="font-size: 0.8rem; background: var(--sk-blue); color: #fff; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px;">
+                    WEEK 4 HIRE</div>
+                <h3>AI Engineer</h3>
+                <p style="font-size: 1rem;">LLM Orchestration</p>
+            </div>
+            <div class="card" style="border-color: var(--sk-green); box-shadow: 0 0 15px rgba(155, 255, 182, 0.1);">
+                <div
+                    style="font-size: 0.8rem; background: var(--sk-green); color: #032C46; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
+                    HIRE FIRST</div>
+                <h3>Data Engineer</h3>
+                <p style="font-size: 1rem;">Pipeline & Graph</p>
+            </div>
+            <div class="card" style="border-color: var(--sk-green); box-shadow: 0 0 15px rgba(155, 255, 182, 0.1);">
+                <div
+                    style="font-size: 0.8rem; background: var(--sk-green); color: #032C46; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
+                    HIRE FIRST</div>
+                <h3>Fullstack Dev</h3>
+                <p style="font-size: 1rem;">Auditor UI</p>
+            </div>
+            <div class="card">
+                <div
+                    style="font-size: 0.8rem; background: #334155; color: #fff; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px;">
+                    FOUNDER</div>
+                <h3>Product Lead</h3>
+                <p style="font-size: 1rem;">Domain Logic</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; color: var(--sk-text-muted);">
+            <span style="border: 1px dashed #334155; padding: 10px 20px; border-radius: 20px;">+ Fractional
+                <strong>Legal Advisor</strong></span>
         </div>
     </section>
 
     <!-- ==================== SLIDE 8: ROADMAP ==================== -->
     <section id="roadmap">
-        <h2>Execution Roadmap</h2>
+        <h2>5. A Sample Project Plan</h2>
 
         <div class="grid-3">
             <div class="card">
-                <div class="sk-badge">Phase 1: 0-3 Months</div>
+                <div class="sk-badge"
+                    style="background: rgba(255, 77, 106, 0.2); border-color: var(--sk-red); color: var(--sk-red);">
+                    Phase 1: Weeks 1-6 (MVP)</div>
                 <h3>The Auditor's Superpower</h3>
                 <ul style="font-size: 1rem;">
                     <li>&bull; Ingestion Pipeline</li>
                     <li>&bull; Basic Matching Rules</li>
-                    <li>&bull; <strong>Goal:</strong> Detect Risks</li>
+                    <li>&bull; <strong>Goal:</strong> Stop the Bleeding</li>
+                    <li style="margin-top: 1rem; color: var(--sk-green); font-weight: bold;">&bull; First cash recovery
+                        by Week 6.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <div class="sk-badge">Phase 2: 3-6 Months</div>
+                <div class="sk-badge">Phase 2: Weeks 7-12</div>
                 <h3>The Connector</h3>
                 <ul style="font-size: 1rem;">
                     <li>&bull; Knowledge Graph</li>
                     <li>&bull; ERP Integration</li>
-                    <li>&bull; <strong>Goal:</strong> Predict Risks</li>
+                    <li>&bull; <strong>Goal:</strong> Systematize the Fix</li>
                 </ul>
             </div>
 
             <div class="card">
-                <div class="sk-badge">Phase 3: 6-12 Months</div>
+                <div class="sk-badge">Phase 3: Month 4+</div>
                 <h3>The Deal Desk Partner</h3>
                 <ul style="font-size: 1rem;">
                     <li>&bull; Real-time Scoring</li>
@@ -774,30 +1284,81 @@ flowchart TD
         </div>
     </section>
 
-    <!-- ==================== SLIDE 9: TEAM ==================== -->
-    <section id="team">
-        <h2>Lean Execution Team</h2>
-        <div class="grid-4" style="text-align: center;">
-            <div class="card">
-                <h3>AI Engineer</h3>
-                <p style="font-size: 1rem;">LLM Orchestration</p>
+    <!-- ==================== SLIDE 7.5: EXECUTIVE INTELLIGENCE (NLQ) ==================== -->
+    <section id="intelligence">
+        <h2>6. Dynamic Dashboards (NLQ)</h2>
+        <p>World-class customer experience with Natural Language Queries.</p>
+
+        <div class="content-box" style="background: rgba(3, 44, 70, 0.6); padding: 2rem;">
+            <!-- Search Bar Mockup -->
+            <div
+                style="background: #fff; border-radius: 30px; padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 2rem;">
+                <span style="font-size: 1.5rem; margin-right: 1rem;">✨</span>
+                <span
+                    style="font-size: 1.1rem; color: #334155; font-family: 'Courier New', monospace; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    Show supplier contracts with >5% inflation exposure...
+                </span>
+                <span
+                    style="background: var(--sk-blue); color: #fff; padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: bold; font-size: 0.8rem; white-space: nowrap;">ASK
+                    AI</span>
             </div>
-            <div class="card">
-                <h3>Data Engineer</h3>
-                <p style="font-size: 1rem;">Knowledge Graph</p>
-            </div>
-            <div class="card">
-                <h3>Fullstack Dev</h3>
-                <p style="font-size: 1rem;">Auditor UI</p>
-            </div>
-            <div class="card">
-                <h3>Product Lead</h3>
-                <p style="font-size: 1rem;">Domain Logic</p>
+
+            <!-- Dynamic Result Mockup -->
+            <div class="grid-2" style="align-items: center; gap: 2rem;">
+                <div style="text-align: left;">
+                    <h3 style="color: var(--sk-white); margin-bottom: 0.5rem; font-size: 1.3rem;">Analysis Result:</h3>
+                    <p style="font-size: 1rem; color: var(--sk-text-muted);">Found <strong>3 active contracts</strong>
+                        where CPI clauses exceed your 5% cap.</p>
+                    <ul style="list-style: none; margin-top: 0.5rem;">
+                        <li
+                            style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                            <span>Vendor A (Cloud)</span>
+                            <strong style="color: var(--sk-red);">+8.2%</strong>
+                        </li>
+                        <li
+                            style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                            <span>Vendor B (Logistics)</span>
+                            <strong style="color: var(--sk-red);">+6.5%</strong>
+                        </li>
+                        <li style="padding: 8px; display: flex; justify-content: space-between;">
+                            <span>Vendor C (SaaS)</span>
+                            <strong style="color: var(--sk-orange);">+5.1%</strong>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Visual Chart Representation -->
+                <div class="nlq-chart">
+                    <div class="nlq-cap">
+                        <span>5.0% CAP</span>
+                    </div>
+                    <div class="nlq-bar red" style="height: 80%;">
+                        <strong>8.2%</strong>
+                        <span>Vendor A</span>
+                    </div>
+                    <div class="nlq-bar red" style="height: 62%;">
+                        <strong>6.5%</strong>
+                        <span>Vendor B</span>
+                    </div>
+                    <div class="nlq-bar orange" style="height: 48%;">
+                        <strong>5.1%</strong>
+                        <span>Vendor C</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem; color: var(--sk-text-muted);">
-            <span style="border: 1px dashed #334155; padding: 10px 20px; border-radius: 20px;">+ Fractional
-                <strong>Legal Advisor</strong></span>
+    </section>
+
+
+    <!-- ==================== SLIDE 9.5: POSITIONING ==================== -->
+    <section id="positioning">
+        <h2>Strategic Positioning</h2>
+        <div class="impact-box"
+            style="background: linear-gradient(135deg, rgba(3, 44, 70, 0.8), rgba(0, 168, 253, 0.1));">
+            <p class="impact-text" style="font-size: 2.5rem;">
+                "The Margin Integrity Engine evolves from a<br>
+                <span style="color: var(--sk-text-muted); text-decoration: line-through;">detection tool</span><br>
+                into the <strong>financial nervous system</strong> of the enterprise."
+            </p>
         </div>
     </section>
 
