@@ -10,9 +10,13 @@
     <!-- Mermaid for Diagrams -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        const isLight = localStorage.getItem('theme') === 'light';
+        const mermaidTheme = isLight ? 'default' : 'dark';
+
         mermaid.initialize({
             startOnLoad: true,
-            theme: 'dark',
+            theme: mermaidTheme,
             flowchart: {
                 useMaxWidth: false,
                 htmlLabels: true,
@@ -21,7 +25,30 @@
                 nodeSpacing: 30,
                 rankSpacing: 40
             },
-            themeVariables: {
+            themeVariables: isLight ? {
+                primaryColor: '#f8fbfe',
+                primaryTextColor: '#0f2a3b',
+                primaryBorderColor: '#0084c8',
+                lineColor: '#0084c8',
+                secondaryColor: '#dbe7f1',
+                tertiaryColor: '#eef4f9',
+                noteBkgColor: '#f8fbfe',
+                noteTextColor: '#0084c8',
+                noteBorderColor: '#0084c8',
+                actorBkg: '#f8fbfe',
+                actorBorder: '#0084c8',
+                actorTextColor: '#0f2a3b',
+                signalColor: '#0084c8',
+                signalTextColor: '#0f2a3b',
+                labelBoxBkgColor: '#f8fbfe',
+                labelBoxBorderColor: '#0084c8',
+                labelTextColor: '#0084c8',
+                loopTextColor: '#0084c8',
+                activationBorderColor: '#0084c8',
+                activationBkgColor: '#dbe7f1',
+                sequenceNumberColor: '#f8fbfe',
+                fontSize: '14px'
+            } : {
                 primaryColor: '#032C46',
                 primaryTextColor: '#fff',
                 primaryBorderColor: '#00A8FD',
@@ -68,6 +95,32 @@
             --card-bg: rgba(3, 44, 70, 0.7);
             --card-border: rgba(0, 168, 253, 0.3);
             --glass-blur: 12px;
+
+            /* Theme Dynamic Variables */
+            --bg-gradient: radial-gradient(circle at 50% 0%, #122E42 0%, #032C46 80%);
+            --h1-gradient: linear-gradient(to right, #fff, #94a3b8);
+            --nav-bg: #123250;
+            --impact-bg: linear-gradient(135deg, rgba(0, 168, 253, 0.1), rgba(3, 44, 70, 0.5));
+            --sk-text-main: rgba(255, 255, 255, 0.85);
+            --quote-bg: rgba(155, 255, 182, 0.08);
+        }
+
+        .light-mode {
+            --sk-blue: #0084c8;
+            --sk-blue-dark: #006aa1;
+            --sk-navy: #f2f6fb;
+            --sk-navy-light: #ffffff;
+            --sk-white: #0f2a3b;
+            --sk-text-muted: #5f6e7b;
+            --sk-green: #2f9e58;
+            --card-bg: #ffffff;
+            --card-border: rgba(3, 44, 70, 0.12);
+            --bg-gradient: radial-gradient(circle at 50% 0%, #ffffff 0%, #eef4f9 70%, #e8f1f7 100%);
+            --h1-gradient: linear-gradient(to right, #0f2a3b, #1b4e6b);
+            --nav-bg: #123250;
+            --impact-bg: linear-gradient(135deg, rgba(0, 168, 253, 0.12), rgba(3, 44, 70, 0.04));
+            --sk-text-main: #223444;
+            --quote-bg: rgba(47, 158, 88, 0.12);
         }
 
         * {
@@ -80,7 +133,7 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--sk-navy);
             /* Radial Gradient to mimic the site's depth */
-            background-image: radial-gradient(circle at 50% 0%, #122E42 0%, #032C46 80%);
+            background-image: var(--bg-gradient);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -112,7 +165,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(3, 44, 70, 0.9);
+            background: var(--nav-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -125,8 +178,29 @@
             transition: opacity 0.2s;
         }
 
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: -0.02em;
+            color: var(--sk-white);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 0.6rem;
+            flex-shrink: 0;
+        }
+
         .nav-brand:hover {
             opacity: 0.8;
+        }
+
+        .quote-box {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-left: 4px solid var(--sk-green);
+            background: var(--quote-bg);
         }
 
         /* Slide counter */
@@ -164,7 +238,7 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--sk-white);
-            background: linear-gradient(to right, #fff, #94a3b8);
+            background: var(--h1-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -200,7 +274,7 @@
         p,
         li {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--sk-text-main);
             margin-bottom: 1rem;
         }
 
@@ -330,7 +404,7 @@
             top: -22px;
             color: #cbd5f5;
             font-size: 0.8rem;
-            background: rgba(3, 44, 70, 0.7);
+            background: var(--card-bg);
             padding: 2px 6px;
             border-radius: 8px;
         }
@@ -411,7 +485,7 @@
 
         /* Impact Box (Quote) */
         .impact-box {
-            background: linear-gradient(135deg, rgba(0, 168, 253, 0.1), rgba(3, 44, 70, 0.5));
+            background: var(--impact-bg);
             border: 1px solid var(--sk-blue);
             border-left: 6px solid var(--sk-blue);
             border-radius: 20px;
@@ -425,7 +499,7 @@
             font-size: 2rem;
             font-weight: 300;
             line-height: 1.4;
-            color: white;
+            color: var(--sk-white);
         }
 
         .impact-text strong {
@@ -435,9 +509,9 @@
 
         /* UI Mockup for HITL */
         .ui-mockup {
-            background: #0f172a;
+            background: var(--sk-navy-light);
             border-radius: 12px;
-            border: 1px solid #334155;
+            border: 1px solid var(--card-border);
             padding: 24px;
             font-family: 'Courier New', monospace;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -528,6 +602,52 @@
             box-shadow: 0 0 10px var(--sk-blue);
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--sk-white);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 1.5rem;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--sk-blue);
+            border-color: var(--sk-blue);
+            color: white;
+            box-shadow: 0 0 15px var(--sk-blue);
+        }
+
+        .light-mode .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+
+        .light-mode .slide-nav a {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        .light-mode .slide-nav a:hover {
+            background: var(--sk-blue);
+            box-shadow: 0 0 10px rgba(0, 132, 200, 0.35);
+        }
+
+        .light-mode nav {
+            border-bottom: 1px solid rgba(3, 44, 70, 0.08);
+        }
+
+        .light-mode section {
+            border-bottom: 1px solid rgba(3, 44, 70, 0.08);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -555,10 +675,27 @@
 
     <nav>
         <a href="#hero" class="nav-brand">
-            <!-- Updated Logo Path -->
-            <img src="images/header-logo.png" alt="Spendkey" style="height: 70px; width: auto;">
+            <img src="images/header-logo.png" alt="Spendkey" style="height: 52px; width: auto;">
         </a>
         <div class="slide-nav">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
+                <svg id="sun-icon" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
             <a href="#hero" title="Start"></a>
             <a href="#toc" title="Agenda"></a>
             <a href="#whynow" title="Why Now"></a>
@@ -584,8 +721,7 @@
         <div style="margin-top: 4rem;">
             <p style="color: var(--sk-text-muted); font-size: 1rem;">PREPARED FOR THE BOARD</p>
             <p style="color: var(--sk-white); font-weight: 600;">By Givaldo</p>
-            <div
-                style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--sk-green); background: rgba(155, 255, 182, 0.05);">
+            <div class="quote-box">
                 <p style="margin: 0; font-size: 1.1rem; color: var(--sk-green);">"This is not an AI project.<br>This is
                     a financial governance platform."</p>
             </div>
@@ -1208,10 +1344,10 @@ flowchart LR
         <h2>Project Roadmap (Team)</h2>
         <p style="margin-bottom: 2rem; color: var(--sk-green);">"Designed for speed, not organizational drag."</p>
         <div class="grid-4" style="text-align: center;">
-            <div class="card">
+            <div class="card" style="border-color: var(--sk-green); box-shadow: 0 0 15px rgba(155, 255, 182, 0.1);">
                 <div
-                    style="font-size: 0.8rem; background: var(--sk-blue); color: #fff; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px;">
-                    WEEK 4 HIRE</div>
+                    style="font-size: 0.8rem; background: var(--sk-green); color: #032C46; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
+                    HIRE FIRST</div>
                 <h3>AI Engineer</h3>
                 <p style="font-size: 1rem;">LLM Orchestration</p>
             </div>
@@ -1219,15 +1355,15 @@ flowchart LR
                 <div
                     style="font-size: 0.8rem; background: var(--sk-green); color: #032C46; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
                     HIRE FIRST</div>
-                <h3>Data Engineer</h3>
-                <p style="font-size: 1rem;">Pipeline & Graph</p>
-            </div>
-            <div class="card" style="border-color: var(--sk-green); box-shadow: 0 0 15px rgba(155, 255, 182, 0.1);">
-                <div
-                    style="font-size: 0.8rem; background: var(--sk-green); color: #032C46; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
-                    HIRE FIRST</div>
                 <h3>Fullstack Dev</h3>
                 <p style="font-size: 1rem;">Auditor UI</p>
+            </div>
+            <div class="card">
+                <div
+                    style="font-size: 0.8rem; background: var(--sk-blue); color: #fff; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px;">
+                    PHASE 2</div>
+                <h3>Data Engineer</h3>
+                <p style="font-size: 1rem;">Pipeline & Graph</p>
             </div>
             <div class="card">
                 <div
@@ -1381,6 +1517,44 @@ flowchart LR
         </div>
     </section>
 
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            htmlElement.classList.add('light-mode');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        } else {
+            // Default to dark mode if no preference or 'dark' is saved
+            htmlElement.classList.remove('light-mode');
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('light-mode');
+            const isLight = htmlElement.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+            if (isLight) {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+
+            // Update Mermaid theme if possible
+            // Note: refreshing is easier, but we can try to re-init
+            location.reload();
+        });
+    </script>
 </body>
 
 </html>
+```
