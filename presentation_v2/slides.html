@@ -225,6 +225,193 @@
             box-shadow: 0 0 10px var(--sk-blue);
         }
 
+        /* Drawing Tool Styles */
+        #drawingLayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 900;
+        }
+
+        #drawingLayer.active {
+            pointer-events: auto;
+            cursor: crosshair;
+        }
+
+        .nav-tools {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        #drawingToolbar {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .draw-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--sk-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .draw-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .draw-btn.active {
+            background: var(--sk-blue);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 168, 253, 0.5);
+        }
+
+        .color-btn {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .color-btn.active {
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 0.4rem;
+        }
+
+        /* Blackboard Styles */
+        .bb-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .bb-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #bbCanvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+
+        .bb-controls {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(3, 44, 70, 0.9);
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border: 1px solid var(--sk-blue);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .bb-color-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .bb-color-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .bb-color-btn.active {
+            transform: scale(1.2);
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .bb-control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--sk-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .bb-control-btn:hover {
+            background: var(--sk-blue);
+            border-color: var(--sk-blue);
+        }
+
+        .bb-control-btn.active {
+            background: var(--sk-blue);
+            color: white;
+            box-shadow: 0 0 10px var(--sk-blue);
+        }
+
+        .bb-toggle-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--sk-white);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .bb-toggle-btn:hover {
+            background: var(--sk-blue);
+            border-color: var(--sk-blue);
+            color: white;
+            box-shadow: 0 0 15px var(--sk-blue);
+        }
+
         /* Typography */
         h1,
         h2,
@@ -951,34 +1138,48 @@
             .chart-grid {
                 grid-template-columns: 1fr;
             }
+
+            .nav-tools {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Drawing Layer (SVG) -->
+    <svg id="drawingLayer" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="shadow">
+                <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.3" />
+            </filter>
+        </defs>
+    </svg>
+
     <nav>
         <a href="#hero" class="nav-brand">
             <img src="images/header-logo.png" alt="Spendkey" style="height: 52px; width: auto;">
         </a>
         <div class="slide-nav">
-            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
-                <svg id="sun-icon" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg id="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
+            <div class="nav-tools">
+                <div id="drawingToolbar">
+                    <button class="draw-btn" id="penBtn" title="Pen (P)">🖊️</button>
+                    <button class="draw-btn" id="eraserBtn" title="Eraser (E)">🧹</button>
+                    <div class="toolbar-divider"></div>
+                    <button class="color-btn" style="background: #000000;" data-color="#000000" title="Black"></button>
+                    <button class="color-btn active" style="background: #3b82f6;" data-color="#3b82f6"
+                        title="Blue"></button>
+                    <button class="color-btn" style="background: #ef4444;" data-color="#ef4444" title="Red"></button>
+                    <button class="color-btn" style="background: #22c55e;" data-color="#22c55e" title="Green"></button>
+                    <button class="color-btn" style="background: #f59e0b;" data-color="#f59e0b"
+                        title="Orange"></button>
+                    <div class="toolbar-divider"></div>
+                    <button class="draw-btn" id="clearBtn" title="Clear All (C)">🗑️</button>
+                </div>
+            </div>
+            <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Mode">
+                <span id="themeIcon">☀</span>
             </button>
             <a href="#hero" title="Start"></a>
             <a href="#toc" title="Agenda"></a>
@@ -1792,17 +1993,23 @@ flowchart LR
                     <div class="bar-list">
                         <div class="bar-row">
                             <div>Vendor A</div>
-                            <div class="bar-track"><div class="bar-fill" style="width: 92%;"></div></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: 92%;"></div>
+                            </div>
                             <div>$1.4M</div>
                         </div>
                         <div class="bar-row">
                             <div>Vendor B</div>
-                            <div class="bar-track"><div class="bar-fill" style="width: 70%;"></div></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: 70%;"></div>
+                            </div>
                             <div>$0.95M</div>
                         </div>
                         <div class="bar-row">
                             <div>Vendor C</div>
-                            <div class="bar-track"><div class="bar-fill" style="width: 46%;"></div></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: 46%;"></div>
+                            </div>
                             <div>$0.62M</div>
                         </div>
                     </div>
@@ -1814,8 +2021,7 @@ flowchart LR
                     <div class="chart-title">Margin Risk Trend</div>
                     <div class="trend-chart">
                         <svg viewBox="0 0 320 140" preserveAspectRatio="none">
-                            <polyline class="gridline" fill="none" stroke-width="1"
-                                points="10,120 310,120" />
+                            <polyline class="gridline" fill="none" stroke-width="1" points="10,120 310,120" />
                             <polyline fill="none" stroke="var(--sk-blue)" stroke-width="3"
                                 points="10,110 90,95 170,70 250,40 310,20" />
                             <circle cx="10" cy="110" r="4" fill="var(--sk-blue)" />
@@ -1862,7 +2068,8 @@ flowchart LR
                     6‑month trend.</div>
                 <div><strong>NLQ Output:</strong> Filters applied for suppliers above $500k; 3 vendors flagged.</div>
                 <div><strong>Root Cause:</strong> Uncapped CPI clauses in top contracts.</div>
-                <div><strong>Recommended Action:</strong> Renegotiate Vendor A &amp; B before Q2 renewals; cap CPI at 4%.
+                <div><strong>Recommended Action:</strong> Renegotiate Vendor A &amp; B before Q2 renewals; cap CPI at
+                    4%.
                 </div>
                 <div><strong>Urgency:</strong> High — 9 renewals within 90 days.</div>
             </div>
@@ -1903,40 +2110,213 @@ flowchart LR
     </section>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement; // Changed from body to htmlElement
 
-        // Check for saved theme
+        // Check local storage
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             htmlElement.classList.add('light-mode');
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
+            themeIcon.textContent = '🌙';
         } else {
             // Default to dark mode if no preference or 'dark' is saved
             htmlElement.classList.remove('light-mode');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
+            themeIcon.textContent = '☀'; // Set default icon for dark mode
         }
 
-        themeToggle.addEventListener('click', () => {
+        themeToggleBtn.addEventListener('click', () => {
             htmlElement.classList.toggle('light-mode');
             const isLight = htmlElement.classList.contains('light-mode');
+            themeIcon.textContent = isLight ? '🌙' : '☀';
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-            if (isLight) {
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-            } else {
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            }
 
             // Update Mermaid theme if possible
             // Note: refreshing is easier, but we can try to re-init
             location.reload();
+        });
+
+        // Drawing Tool Implementation (SVG-based)
+        const svgLayer = document.getElementById('drawingLayer');
+        const penBtn = document.getElementById('penBtn');
+        const eraserBtn = document.getElementById('eraserBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const colorBtns = document.querySelectorAll('.color-btn');
+        const navBar = document.querySelector('nav');
+
+        let isDrawing = false;
+        let isPenActive = false;
+        let isEraserActive = false;
+        let currentColor = '#3b82f6';
+        let currentPath = null;
+        let pathData = '';
+
+        function resizeSVG() {
+            const fullHeight = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight
+            );
+            svgLayer.setAttribute('width', '100%');
+            svgLayer.setAttribute('height', fullHeight);
+            svgLayer.style.height = fullHeight + 'px';
+        }
+
+        resizeSVG();
+        window.addEventListener('resize', resizeSVG);
+        window.addEventListener('load', resizeSVG);
+        setInterval(resizeSVG, 1000);
+
+        penBtn.addEventListener('click', () => {
+            isPenActive = !isPenActive;
+            isEraserActive = false;
+
+            penBtn.classList.toggle('active', isPenActive);
+            eraserBtn.classList.remove('active');
+
+            if (isPenActive) {
+                svgLayer.classList.add('active');
+            } else {
+                svgLayer.classList.remove('active');
+            }
+
+            svgLayer.style.cursor = isPenActive ? 'crosshair' : 'default';
+        });
+
+        eraserBtn.addEventListener('click', () => {
+            isEraserActive = !isEraserActive;
+            isPenActive = false;
+
+            eraserBtn.classList.toggle('active', isEraserActive);
+            penBtn.classList.remove('active');
+
+            if (isEraserActive) {
+                svgLayer.classList.add('active');
+            } else {
+                svgLayer.classList.remove('active');
+            }
+
+            svgLayer.style.cursor = isEraserActive ? 'not-allowed' : 'default';
+        });
+
+        clearBtn.addEventListener('click', () => {
+            const defs = svgLayer.querySelector('defs');
+            svgLayer.innerHTML = '';
+            if (defs) svgLayer.appendChild(defs);
+        });
+
+        colorBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentColor = btn.dataset.color;
+            });
+        });
+
+        function getCoordinates(e) {
+            const point = svgLayer.createSVGPoint();
+            point.x = e.clientX;
+            point.y = e.clientY;
+            const ctm = svgLayer.getScreenCTM();
+            if (!ctm) {
+                return { x: e.pageX, y: e.pageY };
+            }
+            const transformed = point.matrixTransform(ctm.inverse());
+            return { x: transformed.x, y: transformed.y };
+        }
+
+        function startDrawing(e) {
+            if (!isPenActive && !isEraserActive) return;
+            isDrawing = true;
+            const coords = getCoordinates(e);
+
+            if (isEraserActive) {
+                const target = document.elementFromPoint(e.clientX, e.clientY);
+                if (target && (target.tagName === 'path' || target.tagName === 'text')) {
+                    target.remove();
+                }
+            } else {
+                currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                currentPath.setAttribute('stroke', currentColor);
+                currentPath.setAttribute('stroke-width', '3');
+                currentPath.setAttribute('stroke-linecap', 'round');
+                currentPath.setAttribute('stroke-linejoin', 'round');
+                currentPath.setAttribute('fill', 'none');
+                currentPath.setAttribute('filter', 'url(#shadow)');
+                pathData = `M ${coords.x} ${coords.y}`;
+                currentPath.setAttribute('d', pathData);
+                svgLayer.appendChild(currentPath);
+            }
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const coords = getCoordinates(e);
+
+            if (isEraserActive) {
+                const target = document.elementFromPoint(e.clientX, e.clientY);
+                if (target && (target.tagName === 'path' || target.tagName === 'text')) {
+                    target.remove();
+                }
+            } else if (currentPath) {
+                pathData += ` L ${coords.x} ${coords.y}`;
+                currentPath.setAttribute('d', pathData);
+            }
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            currentPath = null;
+            pathData = '';
+        }
+
+        svgLayer.addEventListener('mousedown', startDrawing);
+        svgLayer.addEventListener('mousemove', draw);
+        svgLayer.addEventListener('mouseup', stopDrawing);
+        svgLayer.addEventListener('mouseleave', stopDrawing);
+
+        svgLayer.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            svgLayer.dispatchEvent(mouseEvent);
+        });
+
+        svgLayer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            svgLayer.dispatchEvent(mouseEvent);
+        });
+
+        svgLayer.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            const mouseEvent = new MouseEvent('mouseup', {});
+            svgLayer.dispatchEvent(mouseEvent);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'p' || e.key === 'P') {
+                penBtn.click();
+            } else if (e.key === 'e' || e.key === 'E') {
+                eraserBtn.click();
+            } else if (e.key === 'c' || e.key === 'C') {
+                clearBtn.click();
+            } else if (e.key === 'Escape') {
+                isPenActive = false;
+                isEraserActive = false;
+                penBtn.classList.remove('active');
+                eraserBtn.classList.remove('active');
+                svgLayer.classList.remove('active');
+                svgLayer.style.cursor = 'default';
+            }
         });
     </script>
 </body>
